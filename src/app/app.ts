@@ -1,13 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { OrderComponent } from './order/order';
+import { Order } from './components/order/order';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, OrderComponent], 
+  imports: [RouterOutlet, Order],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrls: ['./app.scss']
 })
+
 export class App {
-  protected title = 'food-ordering-system';
+  title = 'food-ordering-system';
 }

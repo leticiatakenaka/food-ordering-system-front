@@ -28,14 +28,14 @@ export class OrderStatusService {
     this.stompClient.activate();
   }
 
-  subscribeToOrderStatus(orderId: number): Observable<string> {
+  subscribeToOrderStatus(orderId: string): Observable<string> {
     if (this.stompClient && this.stompClient.connected) {
-      this.stompClient.subscribe(`/topic/orders/${orderId}/status`, (message: IMessage) => {
+      this.stompClient.subscribe(`/topic/orders/${orderId}/payment-status`, (message: IMessage) => {
         this.orderStatusSubject.next(message.body);
       });
     } else {
       this.stompClient.onConnect = () => {
-        this.stompClient.subscribe(`/topic/orders/${orderId}/status`, (message: IMessage) => {
+        this.stompClient.subscribe(`/topic/orders/${orderId}/payment-status`, (message: IMessage) => {
           this.orderStatusSubject.next(message.body);
         });
       };
