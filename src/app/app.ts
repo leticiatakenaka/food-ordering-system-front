@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { Order } from './components/order/order';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Order],
+  imports: [Order],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
