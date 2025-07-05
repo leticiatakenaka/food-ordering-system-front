@@ -5,9 +5,10 @@ import { Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class OrderStatusService {
+
+export class PaymentStatusService {
   private stompClient!: Client;
-  private orderStatusSubject: Subject<string> = new Subject<string>();
+  private paymentStatusSubject: Subject<string> = new Subject<string>();
 
   constructor() {
     this.connect();
@@ -28,20 +29,20 @@ export class OrderStatusService {
     this.stompClient.activate();
   }
 
-  subscribeToOrderStatus(orderId: number): Observable<string> {
+  subscribeToPaymentStatus(orderId: string): Observable<string> {
     if (this.stompClient && this.stompClient.connected) {
-      this.stompClient.subscribe(`/topic/orders/${orderId}/status`, (message: IMessage) => {
-        this.orderStatusSubject.next(message.body);
+      this.stompClient.subscribe(`/topic/orders/${orderId}/payment-status`, (message: IMessage) => {
+        this.paymentStatusSubject.next(message.body);
       });
     } else {
       this.stompClient.onConnect = () => {
-        this.stompClient.subscribe(`/topic/orders/${orderId}/status`, (message: IMessage) => {
-          this.orderStatusSubject.next(message.body);
+        this.stompClient.subscribe(`/topic/orders/${orderId}/payment-status`, (message: IMessage) => {
+          this.paymentStatusSubject.next(message.body);
         });
       };
       this.stompClient.activate(); 
     }
 
-    return this.orderStatusSubject.asObservable();
+    return this.paymentStatusSubject.asObservable();
   }
 }
