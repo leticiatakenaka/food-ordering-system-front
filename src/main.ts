@@ -10,6 +10,11 @@ import 'zone.js';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+import { LOCALE_ID } from '@angular/core';
+
+registerLocaleData(ptBr);
 
 bootstrapApplication(App, {
   providers: [
@@ -28,5 +33,6 @@ bootstrapApplication(App, {
     importProvidersFrom(MatCardModule),
     importProvidersFrom(MatIconModule),
     importProvidersFrom(MatProgressSpinnerModule),
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
   ]
 }).catch((err) => console.error(err));
