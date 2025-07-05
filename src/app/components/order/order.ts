@@ -27,14 +27,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class Order implements OnInit {
 
-  readonly customerGuid = '5c0c6502-62a4-4bae-ad09-3f3f849c55cf';
-  readonly paymentTypeGuid = '8bc37f5e-a744-42d1-affa-078ab8baac97';
+  readonly customerGuid = 'b29c3d4f-77e0-4b41-9e7d-3c1a1f6de1ef';
+  readonly paymentTypeGuid = '160e72be-ff7e-4ddb-89fa-fb1b4ce5e71c';
 
   constructor(private api: ApiService, private paymentStatusService: PaymentStatusService, private cd: ChangeDetectorRef, private toastr: ToastrService, private orderConfirmationService: OrderConfirmationService) { }
 
   restaurants: Restaurant[] = [];
   items: Item[] = [];
   selectedRestaurantGuid: string = "";
+  selectedRestaurantName: string = "";
   paymentStatus: string = "";
   orderStatus: string = "";
   isLoadingConfirm = false;
@@ -117,8 +118,9 @@ export class Order implements OnInit {
     }
   }
 
-  selectRestaurant(guid: string) {
+  selectRestaurant(guid: string, name: string) {
     this.selectedRestaurantGuid = guid;
+    this.selectedRestaurantName = name;
     this.api.getItems(guid).subscribe(data => {
       this.items = data;
       this.itemQuantities = {};
@@ -186,5 +188,16 @@ export class Order implements OnInit {
       default:
         return 'text-gray-700';
     }
+  }
+  cancelSelection(): void {
+    this.selectedRestaurantName = '';
+    this.selectedRestaurantGuid = '';
+    this.items = [];
+    this.paymentStatus = "";
+    this.orderStatus =  "";
+    this.items = [];
+    this.idOrder = "";
+    this.isPreparing = false;
+    this.isLoadingConfirm = false
   }
 }
