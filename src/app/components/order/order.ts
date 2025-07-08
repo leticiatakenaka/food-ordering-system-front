@@ -66,6 +66,9 @@ export class Order implements OnInit {
     this.api.submitOrder(payload).subscribe({
       next: (response: any) => {
         const orderId = response.guid;
+
+        this.toastr.warning('Processando o pagamento.', 'Pedido enviado');
+
         this.subscribePaymentStatus(orderId);
         this.subscribeOrderConfirmation(orderId);
       },
@@ -98,8 +101,12 @@ export class Order implements OnInit {
         this.getOrderStatusColor();
         this.hasOrder();
 
-        if (paymentStatus == PaymentStatusEnum.PAID && orderStatus == OrderStatusEnum.PENDING)
+        if (paymentStatus == PaymentStatusEnum.PAID && orderStatus == OrderStatusEnum.PENDING) {
           this.isLoadingConfirm = true;
+          this.toastr.success('Pagamento confirmado.', 'Sucesso');
+        } else {
+          this.toastr.warning('Pagamento recusado.', 'Atenção');
+        }
 
         this.idOrder = JSON.parse(response).orderId;
         this.isSubmitting = false;
