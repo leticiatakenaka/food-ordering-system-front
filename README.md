@@ -1,60 +1,51 @@
-# FoodOrderingSystem
+# 🍽️ FoodOrderingSystem Frontend
+Interface simples em Angular construída para demonstrar a integração em tempo real com o backend do sistema de pedidos de comida via mensageria com RabbitMQ e simulação de pagamento assíncrono.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
+Este frontend tem como objetivo **visualizar e testar a mensageria** da API em tempo real via Webhook ou WebSocket.
 
-## Development server
 
-To start a local development server, run:
+## 📸 Demonstrações
+__💳❌ Pagamento Cancelado__
+![image](https://github.com/user-attachments/assets/0970929d-7222-47f8-981d-c588f1efc471)
 
+__💳✅ Pagamento Confirmado__
+![image](https://github.com/user-attachments/assets/baaaf19a-33b7-485f-8ec8-df65bbb1bd5b)
+
+__📦✅ Pedido Confirmado__
+![image](https://github.com/user-attachments/assets/2dd1462d-e788-43db-bfc8-9b34344d25a4)
+
+
+## 🧰 Tecnologias utilizadas
+- [Angular 17](https://angular.io)
+
+- RxJS para manipulação reativa de eventos
+
+- Tailwind para layout simples
+
+- WebSocket (via WebSocket API do browser)
+
+- Integração com backend em Kotlin + RabbitMQ
+
+## ⚙️ Como rodar o projeto
+**1. Instale as dependências**
 ```bash
-ng serve
+npm install
 ```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+**2. Rode o projeto localmente**
 ```bash
-ng generate component component-name
+ng serve -o
 ```
+Acesse: http://localhost:4200
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🚀 Funcionalidades implementadas
+- Conexão com o WebSocket do backend para escutar atualizações de status de pedido/pagamento
 
-```bash
-ng generate --help
-```
+- Interface para visualizar em tempo real quando o pedido muda para pago, recusado ou confirmado
 
-## Building
+- Teste de resposta do sistema sem precisar recarregar ou consultar manualmente
 
-To build the project run:
+## 💡 Objetivo do projeto
+Este frontend foi desenvolvido para **apoiar a apresentação técnica** do backend FoodOrderingSystem, demonstrando como o **processamento assíncrono via RabbitMQ** pode ser refletido visualmente com **feedback imediato** ao usuário através de eventos em **tempo real.**
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# food-ordering-system-front
+🛠️ _Desenvolvido por Leticia Takenaka_ </br>
+📦 _Frontend de apoio ao [backend Kotlin com RabbitMQ e Docker](https://github.com/leticiatakenaka/food-ordering-system/edit/main/README.md)_
